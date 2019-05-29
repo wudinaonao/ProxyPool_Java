@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.naonao.proxypool.mapper.UnVerifiedMapper">
+
+    <!--name space-->
+    <select id="getUnVerifiedEntityById" resultType="UnVerifiedEntity">
+        select * from UnVerified where id = #{id}
+    </select>
+
+    <select id="getUnVerifiedEntityByHash" resultType="UnVerifiedEntity">
+        select * from UnVerified where md5 = #{hash}
+    </select>
+
+    <select id="getUnVerifiedEntityAll" resultType="UnVerifiedEntity">
+        select * from UnVerified
+    </select>
+
+
+
+    <insert id="insert">
+        insert into UnVerified(
+            id,
+            ip,
+            port,
+            type,
+            locatiton,
+            speed,
+            lastUpdateTime,
+            md5,
+            weight
+        )
+        values(
+            #{id},
+            #{ip},
+            #{port},
+            #{type},
+            #{locatiton},
+            #{speed},
+            #{lastUpdateTime},
+            #{md5},
+            #{weight}
+        )
+    </insert>
+
+    <delete id="delete">
+        delete from UnVerified where md5 = #{hash}
+    </delete>
+
+    <update id="update">
+        update UnVerified
+        set
+            id = #{id},
+            ip = #{ip},
+            port = #{port},
+            type = #{type},
+            locatiton = #{locatiton},
+            speed = #{speed},
+            lastUpdateTime = #{lastUpdateTime},
+            md5 = #{md5},
+            weight = #{weight}
+        where
+            md5 = #{hash}
+    </update>
+</mapper>

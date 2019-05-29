@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.naonao.proxypool.mapper.VerifiedMapper">
+
+    <!--name space-->
+    <select id="getVerifiedEntityById" resultType="VerifiedEntity">
+        select * from Verified where id = #{id}
+    </select>
+
+    <select id="getVerifiedEntityByHash" resultType="VerifiedEntity">
+        select * from Verified where md5 = #{hash}
+    </select>
+
+
+
+    <insert id="insert">
+        insert into Verified(
+            id,
+            ip,
+            port,
+            type,
+            locatiton,
+            speed,
+            lastUpdateTime,
+            md5,
+            weight
+        )
+        values(
+            #{id},
+            #{ip},
+            #{port},
+            #{type},
+            #{locatiton},
+            #{speed},
+            #{lastUpdateTime},
+            #{md5},
+            #{weight}
+        )
+    </insert>
+
+    <delete id="delete">
+        delete from Verified where md5 = #{hash}
+    </delete>
+
+    <update id="update">
+        update Verified
+        set
+            id = #{id},
+            ip = #{ip},
+            port = #{port},
+            type = #{type},
+            locatiton = #{locatiton},
+            speed = #{speed},
+            lastUpdateTime = #{lastUpdateTime},
+            md5 = #{md5},
+            weight = #{weight}
+        where
+            md5 = #{hash}
+    </update>
+</mapper>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.naonao.proxypool.mapper.APIMapper">
+
+    <!--name space-->
+    <select id="getApiEntityyById" resultType="APIEntity">
+        select * from API where id = #{id}
+    </select>
+
+    <select id="getApiEntityByHash" resultType="APIEntity">
+        select * from API
+    </select>
+
+
+
+    <insert id="insert">
+        insert into API(
+            id,
+            url,
+            method,
+            params,
+            response
+        )
+        values(
+            #{id},
+            #{url},
+            #{method},
+            #{params},
+            #{response}
+        )
+    </insert>
+
+    <delete id="delete">
+        delete from API where id = #{id}
+    </delete>
+
+    <update id="update">
+        update API
+        set
+            id = #{id},
+            url = #{url},
+            method = #{method},
+            params = #{params},
+            response = #{response}
+        where
+            id = #{id}
+    </update>
+</mapper>
